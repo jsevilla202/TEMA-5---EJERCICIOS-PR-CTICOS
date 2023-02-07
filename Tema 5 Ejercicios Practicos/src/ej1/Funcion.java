@@ -1,6 +1,5 @@
  package ej1;
-
-import java.io.IOException;
+ 
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -70,8 +69,8 @@ public class Funcion {
 		}
 		while(t[pos]!='*');
 		sc.close();
-		
-		System.out.println(muerto? "\033[0;1m" + "PERDISTES, UNA MINA TE HA MATADO" : "\033[0;1m" + "ENHORABUENA, HAS GANADO!!");
+		System.out.println();
+		System.out.println(muerto? "\033[0;1m" + "\033[31;1;1mPERDISTES, UNA MINA TE HA MATADO\033[0m" : "\033[0;1m" + "\033[32;1;1mENHORABUENA, HAS GANADO!!\033[0m");
 	}
 	
 }
