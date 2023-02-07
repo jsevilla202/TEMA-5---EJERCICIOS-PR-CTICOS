@@ -1,5 +1,6 @@
  package ej1;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -44,15 +45,33 @@ public class Funcion {
 	}
 	
 	void juego(char[] t) {
+		char[] tabla = new char [t.length];
+		Arrays.fill(tabla, '?');
+		boolean muerto = false;
 		int pos;
+		int i = 0;
 		Scanner sc = new Scanner(System.in);
 		
 		do {
+			if(i==14) {
+				break;
+			}
 			System.out.println();
-			System.out.print("Inserta un número del 1 al 20:");
+			System.out.print("Inserta un número del 1 al 20: ");
 			pos = sc.nextInt();
+			pos--;
+			if(t[pos]=='*') {
+				muerto = true;
+				break;
+			}
+			tabla[pos] = t[pos];
+			System.out.println(Arrays.toString(tabla));
+			i++;
 		}
 		while(t[pos]!='*');
+		sc.close();
+		
+		System.out.println(muerto? "\033[0;1m" + "PERDISTES, UNA MINA TE HA MATADO" : "\033[0;1m" + "ENHORABUENA, HAS GANADO!!");
 	}
 	
 }
