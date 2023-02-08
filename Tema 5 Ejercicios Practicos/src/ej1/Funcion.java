@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Funcion {
+	//Establecemos un parametro para el límite de minas
+	final int minas = 6;
 	//Funcion minas
 	char[] minas(char[] t) {
 		//Crea una tabla con la misma longitud que la recibida
 		char tabla[] = new char [t.length];
-		//Establecemos un parametro para el límite de minas
-		final int minas = 6;
 		//Parametro que recoge la posición aleatoria en la tabla
 		int pos;
 		//Rellenamos aleatoriamente celdas con minas
