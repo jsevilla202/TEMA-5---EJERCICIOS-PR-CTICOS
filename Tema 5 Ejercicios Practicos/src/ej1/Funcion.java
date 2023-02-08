@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Funcion {
 	//Establecemos un parametro para el límite de minas
 	final int minas = 6;
+	//Contador, cuando llega a 14, el juego se termina
+	static int contador = 0;
 	//Funcion minas
 	char[] minas(char[] t) {
 		//Crea una tabla con la misma longitud que la recibida
@@ -61,6 +63,9 @@ public class Funcion {
 		return tabla;
 	}
 	
+	
+	
+	
 	//Funcion juego
 	void juego(char[] t) {
 		//Crea una tabla con la misma longitud que la recibida, esta tabla va a ser la que el usuario vea
@@ -79,7 +84,7 @@ public class Funcion {
 		Scanner sc = new Scanner(System.in);
 		
 		//Un bucle que se repetira 14 veces o hasta que toque una mina
-		for (int i = 0; i < 14 && t[pos] != '*'; i++) {
+		while( contador < 14 && t[pos] != '*') {
 		    //Espacio
 		    System.out.println();
 		    //Imprime la tabla con los ?
@@ -100,12 +105,11 @@ public class Funcion {
 		            muerto = true;
 		        } else {
 		            //Se iguala la posición de la tabla con ? con la que tiene el resultado paa mostrar las casillas ya usadas
-		            tabla[pos] = t[pos];
+		        	tabla = Funcion.destapar(tabla, t, pos);
 		        }
 		    } else {
 		        //Muestra un mensaje de error
 		        System.out.println("ERROR: Introduzca un número del 1 al 20");
-		        i--;
 		    }
 		}
 
@@ -116,5 +120,75 @@ public class Funcion {
 		//Mensaje de victoria o derrta dependiendo del booleano muerto
 		System.out.println(muerto? "\033[0;1m" + "\033[31;1;1mPERDISTES, UNA MINA TE HA MATADO\033[0m" : "\033[0;1m" + "\033[32;1;1mENHORABUENA, HAS GANADO!!\033[0m");
 	}
+	
+	
+	
+	
+	
+	//Función para destapar las casillas
+	static char[] destapar(char[] tabla, char[]t, int pos) {
+		//Copia el array
+		char[] tabla2 = Arrays.copyOf(tabla, tabla.length);
+		//Si el valor en esa posición es 0
+		if(t[pos]=='0') {
+			/*
+			 * Entra en un bucle:
+			 * Inicializa j a 0
+			 * Se repetira mientras que la posición+j sea inferior a la longitud del array
+			 * Se repetira mientras que el valor en la del array 't' en una posición sea igual al siguiente
+			 * Destapara tanto la siguiente como el 1 más proximo
+			 */
+				for(int j = 0; pos+j<t.length-1 && t[pos] == t[pos+j];j++) {
+					tabla2[pos+j] = t[pos+j];
+					tabla2[pos+j+1] = t[pos+j+1];
+					contador ++;
+			}
+				/*
+				 * Entra en un bucle:
+				 * Inicializa j a 0
+				 * Se repetira mientras que la posición-j sea superior a 0
+				 * Se repetira mientras que el valor en la del array 't' en una posición sea igual al anterior
+				 * Destapara tanto la anterior como el 1 más proximo
+				 */
+           for(int j = 0; pos-j>0 && t[pos] == t[pos-j];j++) {
+           	 tabla2[pos-j] = t[pos-j];
+           	 tabla2[pos-j-1] = t[pos-j-1];
+           	contador ++;
+           }
+		}
+		//Si el valor en esa posición es 0
+		else if(t[pos]=='1') {
+			/*
+			 * Entra en un bucle:
+			 * Inicializa j a 0
+			 * Se repetira mientras que la posición+j sea inferior a la longitud del array
+			 * Se repetira mientras que el valor en la del array 't' en una posición sea igual al siguiente
+			 * Destapara la siguiente
+			 */
+            for(int j = 0; pos+j<t.length && t[pos] == t[pos+j];j++) {
+           	 tabla2[pos+j] = t[pos+j];
+           	contador++;
+           }
+			/*
+			 * Entra en un bucle:
+			 * Inicializa j a 0
+			 * Se repetira mientras que la posición-j sea superior a 0
+			 * Se repetira mientras que el valor en la del array 't' en una posición sea igual al anterior
+			 * Destapara la siguiente
+			 */
+           for(int j = 0; pos-j>=0 && t[pos] == t[pos-j];j++) {
+           	 tabla2[pos-j] = t[pos-j];
+           	contador++;
+           }
+		}
+		//En otro caso solo destapa la casilla elegida
+           else {
+        	   tabla2[pos] = t[pos];
+        	   contador++;
+           }
+		//Devuelve la tabla
+		return tabla2;
+	}
+
 	
 }
