@@ -48,7 +48,7 @@ public class Main {
 		}
 		//Si el jugador 1 ha sacado más de 7,5 gana el jugador 2
 		else {
-			System.out.println("\033[0;32m" + "Enhorabuena" + "\033[0m"+ ", "+ Funcion.j2+", ha ganado la partida");
+			System.out.println("\033[0;32m" + "Enhorabuena" + "\033[0m"+ ", "+ Funcion.j2+", ha ganado la partidaa");
 		}
 	}
 
