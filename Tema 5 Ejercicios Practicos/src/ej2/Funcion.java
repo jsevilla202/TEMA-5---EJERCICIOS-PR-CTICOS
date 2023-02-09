@@ -4,28 +4,46 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Funcion {
+	//Array que contiene la lista de palos
 	final static String[] palos = { "oros", "copas", "espadas", "bastos"};
+	//Array que contiene los numeros de las cartas
 	final static int[] cartas = {1,2,3,4,5,6,7,8,9,10};
+	//Nombre del jugador 1
 	final static String j1 = "JUGADOR 1";
+	//Nombre del jugador 2
 	final static String j2 = "JUGADOR 2";
+	//Array que contiene las cartas duplicadas
 	static int[] duplicados = new int [1];
+	//Booleano que indica si la carta es repetida
 	static boolean duplicado = true;
+	//Scanner nombrado "sc"
 	static Scanner sc = new Scanner(System.in);
 	
+	//Funcion del juego
 	static double juego(double pj) {
+		//Parametro que almacena la aleccion del jugador
 		String eleccion = "s";
+		//Parametro que almacena un número random de la lista de palos
 		int randompalos;
+		//Parametro que almacena un número random de la lista de nº de cartas
 		int randomcartas;
 		
 		System.out.println();
+		//Bucle que se repetira mientras el jugador quiera más cartas introduciendo "s" y tenga menos o igual a 7,5 puntos
 		while(eleccion.equals("s")&&pj<=7.5) {
 			System.out.println();
+			//Pregunta al jugador si quiere más cartas
 			System.out.print("¿Quieres sacar una carta (s/n)? ");
+			//Guarda en el parametro eleccion la respuesta del usuario
 			eleccion = sc.next();
+			//si la respuesta es "s", continua con el programa
 			if(eleccion.equals("s")) {
+				//Genera numeros random con un maximo a la longitud de los arrays correspondientes y los guarda en su parametro correspondiente
 				randompalos = (int) (Math.random()*palos.length);
 				randomcartas = (int) (Math.random()*cartas.length);
+				//Comprueba si está repetida
 				Funcion.descartes(randompalos, randomcartas);
+				//Si no está repetida, continua
 				if(duplicado = true) {
 					//Muestra los puntos al jugador
 					pj = Funcion.cartas(randompalos, randomcartas, pj);
@@ -43,12 +61,14 @@ public class Funcion {
 					System.out.println("Tienes " + pj + " puntos");
 				}
 			}
+			//Si es otra respuesta y no es "n", salta un error
 			if(!eleccion.equals("n")&&!eleccion.equals("s")) {
 				System.out.println("ERROR: Valor introducido no valido");
 				eleccion = "s";
 			}
 		}
 		System.out.println();
+		//Devuelve los puntos
 		return pj;
 	}
 	
