@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class Funcion {
 	//Array que contiene la lista de palos
-	final static String[] palos = { "oros", "copas", "espadas", "bastos"};
+	final static String[] PALOS = { "oros", "copas", "espadas", "bastos"};
 	//Array que contiene los numeros de las cartas
-	final static int[] cartas = {1,2,3,4,5,6,7,8,9,10};
+	final static int[] CARTAS = {1,2,3,4,5,6,7,8,9,10};
 	//Nombre del jugador 1
-	final static String j1 = "JUGADOR 1";
+	final static String J1 = "JUGADOR 1";
 	//Nombre del jugador 2
-	final static String j2 = "JUGADOR 2";
+	final static String J2 = "JUGADOR 2";
 	//Array que contiene las cartas duplicadas
 	static int[] duplicados = new int [1];
 	//Booleano que indica si la carta es repetida
@@ -39,25 +39,25 @@ public class Funcion {
 			//si la respuesta es "s", continua con el programa
 			if(eleccion.equals("s")) {
 				//Genera numeros random con un maximo a la longitud de los arrays correspondientes y los guarda en su parametro correspondiente
-				randompalos = (int) (Math.random()*palos.length);
-				randomcartas = (int) (Math.random()*cartas.length);
+				randompalos = (int) (Math.random()*PALOS.length);
+				randomcartas = (int) (Math.random()*CARTAS.length);
 				//Comprueba si está repetida
-				Funcion.descartes(randompalos, randomcartas);
+				descartes(randompalos, randomcartas);
 				//Si no está repetida, continua
 				if(duplicado = true) {
 					//Muestra los puntos al jugador
-					pj = Funcion.cartas(randompalos, randomcartas, pj);
+					pj = cartas(randompalos, randomcartas, pj);
 					System.out.println("Tienes " + pj);
 				}
 				else {
 					//Se repite hasta que dejan de salir duplicados
 					while(duplicado=false) {
-						randompalos = (int) (Math.random()*palos.length);
-						randomcartas = (int) (Math.random()*cartas.length);
+						randompalos = (int) (Math.random()*PALOS.length);
+						randomcartas = (int) (Math.random()*CARTAS.length);
 						Funcion.descartes(randompalos, randomcartas);
 					}
 					//Muestra los puntos al jugador
-					Funcion.cartas(randompalos, randomcartas, pj);
+					cartas(randompalos, randomcartas, pj);
 					System.out.println("Tienes " + pj + " puntos");
 				}
 			}
@@ -76,19 +76,19 @@ public class Funcion {
 	static double cartas(int rpalos, int rcartas, double pj) {
 		switch(rcartas) {
 		case 0, 1, 2, 3,4, 5, 6:
-			System.out.println("Tu carta es: " + cartas[rcartas] + " de " + palos[rpalos]);
-			pj += cartas[rcartas];
+			System.out.println("Tu carta es: " + CARTAS[rcartas] + " de " + PALOS[rpalos]);
+			pj += CARTAS[rcartas];
 			break;
 		case 7: 
-			System.out.println("Tu carta es: " + "Sota"+ " de " + palos[rpalos]);
+			System.out.println("Tu carta es: " + "Sota"+ " de " + PALOS[rpalos]);
 			pj += 0.5;
 			break;
 		case 8: 
-			System.out.println("Tu carta es: " + "Caballo"+ " de " + palos[rpalos]);
+			System.out.println("Tu carta es: " + "Caballo"+ " de " + PALOS[rpalos]);
 			pj += 0.5;
 			break;
 		case 9: 
-			System.out.println("Tu carta es: " + "Rey"+ " de " + palos[rpalos]);
+			System.out.println("Tu carta es: " + "Rey"+ " de " + PALOS[rpalos]);
 			pj += 0.5;
 			break;
 		}
