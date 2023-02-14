@@ -16,11 +16,11 @@ public class Funcion {
 	static int[] duplicados = new int [1];
 	//Booleano que indica si la carta es repetida
 	static boolean duplicado = true;
-	//Scanner nombrado "sc"
-	static Scanner sc = new Scanner(System.in);
 	
 	//Funcion del juego
 	static double juego(double pj) {
+		//Scanner nombrado "sc"
+		Scanner sc = new Scanner(System.in);
 		//Parametro que almacena la aleccion del jugador
 		String eleccion = "s";
 		//Parametro que almacena un número random de la lista de palos
