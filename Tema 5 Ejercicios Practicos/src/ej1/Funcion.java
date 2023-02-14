@@ -129,6 +129,8 @@ public class Funcion {
 	static char[] destapar(char[] tabla, char[]t, int pos) {
 		//Copia el array
 		char[] tabla2 = Arrays.copyOf(tabla, tabla.length);
+		//Comprueba si ya ha sido destapado
+		if(tabla[pos]=='?') {
 		//Si el valor en esa posición es 0
 		if(t[pos]=='0') {
 			/*
@@ -186,9 +188,11 @@ public class Funcion {
         	   tabla2[pos] = t[pos];
         	   contador++;
            }
+		}
 		//Devuelve la tabla
 		return tabla2;
 	}
+
 
 	
 }
